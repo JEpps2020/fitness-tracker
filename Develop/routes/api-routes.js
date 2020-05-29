@@ -15,7 +15,7 @@ module.exports = function(app) {
     db.Workout.find({
       // include: [db.Post]
     })
-    .limit(7)
+    // .limit(7)
     .then(function(dbWorkout) {
       res.json(dbWorkout);
     });
@@ -46,6 +46,21 @@ module.exports = function(app) {
           res.json(err);
         });
     });
+
+    app.put("/api/workouts/:id", (req, res) => {
+      db.Workout
+      .findByIdAndUpdate(req.params.id,
+        {$push:{exercises: req.body}})
+
+        .then(dbObject => {
+          console.log(dbObject)
+          res.json(dbObject);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    });
+
 
 
 };
