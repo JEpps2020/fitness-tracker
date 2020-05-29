@@ -37,15 +37,15 @@ module.exports = function(app) {
   //   });
   // });
 
-  // app.post("/api/workout", function(req, res) {
-  //     db.Workout.create(req)
-  //       .then(dbWorkout => {
-  //         res.json(dbWorkout);
-  //       })
-  //       .catch(err => {
-  //         res.json(err);
-  //       });
-  //   });
+  app.post("/api/workouts", function(req, res) {
+      db.Workout.create({})
+        .then(dbWorkout => {
+          res.json(dbWorkout);
+        })
+        .catch(err => {
+          res.json(err);
+        });
+    });
 
 
 };
