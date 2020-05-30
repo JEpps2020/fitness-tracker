@@ -50,17 +50,15 @@ module.exports = function(app) {
     app.put("/api/workouts/:id", (req, res) => {
       db.Workout
       .findByIdAndUpdate(req.params.id,
-        {$push:{exercises: req.body}})
+        {$push:{exercises: req.body}},
+        {new: true, runValidators:true})
 
         .then(dbObject => {
-          console.log(dbObject)
+          console.log(dbObject);
           res.json(dbObject);
         })
         .catch(err => {
           res.json(err);
         });
     });
-
-
-
 };
